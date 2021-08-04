@@ -134,6 +134,17 @@ function articleMaker({title, date, firstParagraph, secondParagraph, thirdParagr
   return article;
 };
 
+const newArticle = {title: 'New article',
+date: 'Nov 5th, 2018',
+firstParagraph: `Lucas ipsum dolor sit amet ben twi'lek padmé darth darth darth moff hutt organa twi'lek. Ben amidala secura skywalker lando.`,
+
+secondParagraph: `Grievous fett calamari anakin skywalker hutt.Alderaan darth kenobi darth r2- d2
+    windu mothma.Sidious darth calamari moff.Wampa mothma sith wedge solo mara.Darth gonk maul sith moff chewbacca palpatine.`,
+
+thirdParagraph: `Dagobah hutt jawa leia calamari ventress skywalker yoda. Binks wicket hutt coruscant sidious.`
+};
+data.push(newArticle);
+
 data.forEach(item => {
   document.querySelector('.articles').appendChild(articleMaker(item));
 });
