@@ -86,31 +86,54 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
-  }
+  },
+
 ];
 
-/*
-  Step 1: Write a component called 'articleMaker' to create an article.
-  Your component is a function that takes an article object as its only argument,
-  and returns a DOM node looking like the one below:
 
-  <div class="article">
-    <h2>{title of the article}</h2>
-    <p class="date">{date of the article}</p>
+function articleMaker({title, date, firstParagraph, secondParagraph, thirdParagraph}){
+//create elements
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const firstP = document.createElement('p');
+  const secondP = document.createElement('p');
+  const thirdP = document.createElement('p');
+  const expandButton = document.createElement('span');
 
-    {three separate paragraph elements}
+  //locate elements inside articles
+  article.appendChild(articleTitle);
+  article.appendChild(articleDate);
+  article.appendChild(firstP);
+  article.appendChild(secondP);
+  article.appendChild(thirdP);
+  article.appendChild(expandButton);
 
-    <span class="expandButton">+</span>
-  </div>
+  //add className
+  article.classList.add('article');
+  articleDate.classList.add('date');
+  expandButton.classList.add('expandButton');
 
-  Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
-  This listener should toggle the class 'article-open' on div.article.
+  //add content
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  firstP.textContent = firstParagraph;
+  secondP.textContent = secondParagraph;
+  thirdP.textContent = thirdParagraph;
+  expandButton.textContent = '+';
 
-  Step 3: Don't forget to return something from your function!
+  expandButton.addEventListener('click', (e)=>{
+    article.classList.toggle('article-open');
+    if (expandButton.textContent === '+'){
+    return expandButton.textContent = '-';
+    } else {
+      return expandButton.textContent = '-';
+    }
+  });
 
-  Step 4: Outside your function now, loop over the data. At each iteration you'll use your component
-  to create a div.article element and append it to the DOM inside div.articles (see index.html).
+  return article;
+};
 
-  Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
-  Refresh the page to see the new article.
-*/
+data.forEach(item => {
+  document.querySelector('.articles').appendChild(articleMaker(item));
+});
